@@ -2,7 +2,7 @@
 
 This is a WhatsApp chat analyzer that uses Python to create a Streamlit app. With this app, you can upload your WhatsApp chat file, and the app will generate several charts and visualizations based on the chat data.
 
-[Streamlit app](https://sloperab-whatsappdash-test-lfnoi5.streamlit.app/)
+[Streamlit app](https://sloperab-whatsappdash-app-y9jypz.streamlit.app/)
 
 ## How to Use
 
