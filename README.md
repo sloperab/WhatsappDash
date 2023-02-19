@@ -27,6 +27,10 @@ This is a WhatsApp chat analyzer that uses Python to create a Streamlit app. Wit
     -   Message type (long,short,mid)
 6.  Explore the charts and visualizations to gain insights into your WhatsApp chat.
     
+## How to download chat
+![](https://github.com/sloperab/WhatsappDash/blob/main/1.png)
+![](https://github.com/sloperab/WhatsappDash/blob/main/2.png)
+![](https://github.com/sloperab/WhatsappDash/blob/main/3.png)
 
 ## Requirements
 
@@ -48,6 +52,7 @@ You can install these packages using the following command: `pip install dash em
 This app has the following limitations:
 
 -   It only works with WhatsApp chats in .txt format.
+-   Currently only works with phones using 12 hour format, not 24. (Working on fix)
 -   It may not work properly with non-English chats, especially those with non-Latin characters.
 
 ## Credits
