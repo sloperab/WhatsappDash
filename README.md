@@ -29,9 +29,9 @@ You can test the app here:
 6.  Explore the charts and visualizations to gain insights into your WhatsApp chat.
     
 ## How to download chat
-<img src="https://github.com/sloperab/WhatsappDash/blob/main/1.png" width="200" height="400" class="center" />
-<img src="https://github.com/sloperab/WhatsappDash/blob/main/2.png" width="200" height="400" class="center"/>
-<img src="https://github.com/sloperab/WhatsappDash/blob/main/3.png" width="200" height="400" class="center"/>
+<img src="https://github.com/sloperab/WhatsappDash/blob/main/images/1.png" width="200" height="400" class="center" />
+<img src="https://github.com/sloperab/WhatsappDash/blob/main/images/2.png" width="200" height="400" class="center"/>
+<img src="https://github.com/sloperab/WhatsappDash/blob/main/images/3.png" width="200" height="400" class="center"/>
 
 ## Requirements
 
