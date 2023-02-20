@@ -28,9 +28,9 @@ This is a WhatsApp chat analyzer that uses Python to create a Streamlit app. Wit
 6.  Explore the charts and visualizations to gain insights into your WhatsApp chat.
     
 ## How to download chat
-![](https://github.com/sloperab/WhatsappDash/blob/main/1.png =250x250)
-![](https://github.com/sloperab/WhatsappDash/blob/main/2.png =250x250)
-![](https://github.com/sloperab/WhatsappDash/blob/main/3.png =250x250 )
+<img src="https://github.com/sloperab/WhatsappDash/blob/main/1.png" width="200" height="400" />
+<img src="https://github.com/sloperab/WhatsappDash/blob/main/2.png" width="200" height="400" />
+<img src="https://github.com/sloperab/WhatsappDash/blob/main/3.png" width="200" height="400" />
 
 ## Requirements
 
