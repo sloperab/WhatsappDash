@@ -27,6 +27,8 @@ def extract_chat_info(chat):
             chat_info[-1]['Message'] = chat_info[-1]['Message'] + cur_row
             # print()
             continue
+        # print(cur_row)
+        # print(re.search(r"(\d{1,}/\d{2}/\d{2})  (\d{1,2}\:\d{1,2}\:\d{1,2})",cur_row))
         date_time = dt.datetime.strptime(re.search(r"(\d{1,}/\d{2}/\d{2},) (\d{1,2}\:\d{1,2}\:\d{1,2})",cur_row).group(),'%d/%m/%y, %H:%M:%S')
         date = re.search(r"(\d{1,}/\d{2}/\d{2})", cur_row).group()
         time = re.search(r"(\d{1,2}\:\d{1,2}\:\d{1,2}\s)(AM|PM)",cur_row).group()
@@ -146,10 +148,13 @@ def create_graphs(df):
                                                                         std = ('Time_to_respond_mins','std')).reset_index()
     avg_time_day = response_time_filtered.groupby(['Contact','Year_month']).agg(avg_resp_time = ('Time_to_respond_mins','mean')).reset_index()
     fig_avg_response_time = px.line(avg_time_day,x='Year_month',y = 'avg_resp_time',color='Contact',title= 'Mean response time per month (minutes)')
+    # med_time_day = response_time_filtered.groupby(['Contact','Year_month']).agg(avg_resp_time = ('Time_to_respond_mins','median')).reset_index()
+    # fig_med_response_time = px.line(med_time_day,x='Year_month',y = 'avg_resp_time',color='Contact',title= 'Median response time per month (minutes)')
+    # Calculating peak hours adjusting timezone diff
     peak_hours = df
     timezone_diff = dt.timedelta(hours=6)
     peak_hours['Hour'] = peak_hours['Datetime'].apply(lambda x: x.hour)
-    # peak_hours['Hour'] = peak_hours['Datetime'].apply(lambda x: x + timezone_diff if ((dt.datetime.strptime('22/09/10', '%y/%m/%d')).date() <= x.date() <= (dt.datetime.strptime('23/01/17', '%y/%m/%d').date())) else x)
+    peak_hours['Hour'] = peak_hours['Datetime'].apply(lambda x: x + timezone_diff if ((dt.datetime.strptime('22/09/10', '%y/%m/%d')).date() <= x.date() <= (dt.datetime.strptime('23/01/17', '%y/%m/%d').date())) else x)
     peak_hours['Hour'] = peak_hours['Hour'].apply(lambda x: x.hour)
     peak_hours_df = peak_hours.groupby(['Hour']).agg(msg_amount = ('Hour','count')).reset_index()
     fig_peak_hour = px.bar(peak_hours_df,x='Hour',y='msg_amount',title='Messages per hour')
@@ -184,6 +189,18 @@ if st.button('Process file'):
             st.plotly_chart(i)
 else:
     st.write('Upload file')
+
+
+
+
+
+
+# '# Wordcloud'
+# st.image('wordCloudJuanita.png',caption = 'Juanita',use_column_width= True)
+# st.image('wordCloudSimon.png',caption = 'Simon',use_column_width= True)
+
+
+
 
 
 
