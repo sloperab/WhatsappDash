@@ -15,7 +15,13 @@ from collections import Counter
 import streamlit as st
 import plotly.io as pio
 import csv
+import nltk_stopword
+from nltk.corpus import stopwords
+import wordcloud
+import nltk_stopword
 
+# nltk.download('stopwords')
+stop_words_sp = set(stopwords.words('spanish'))
 pio.templates.default = 'plotly'
 def extract_chat_info(chat):
     chat_info = []
@@ -173,6 +179,21 @@ def create_graphs(df):
             fig_streak,emoji_graph,fig_avg_response_time,fig_peak_hour,
             fig_msg_length_cat]
 
+def word_clouds(processed_chat):
+  words_contact = []
+  clouds = []
+  for i in contacts:
+    text = " ".join(Message for Message in processed_chat[processed_chat['Contact'] == i].Message)
+    words_contact.append(text)
+  for i in range(len(words_contact)):
+    wordcloud = WordCloud(max_font_size=40, max_words=150, background_color="white",stopwords = stop_words_sp).generate(words_contact[i])
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis("off")
+    plt.show()
+    st.pyplot()
+  return clouds
+
+
 uploaded_file = st.file_uploader("Upload Files",type=['.txt'])
 
 if st.button('Process file'):
@@ -187,6 +208,7 @@ if st.button('Process file'):
         '# Whatsapp Dash'
         for i in charts:
             st.plotly_chart(i)
+        word_clouds(df)
 else:
     st.write('Upload file')
 
@@ -195,9 +217,7 @@ else:
 
 
 
-# '# Wordcloud'
-# st.image('wordCloudJuanita.png',caption = 'Juanita',use_column_width= True)
-# st.image('wordCloudSimon.png',caption = 'Simon',use_column_width= True)
+
 
 
 
