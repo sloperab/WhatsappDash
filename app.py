@@ -208,7 +208,7 @@ if st.button('Process file'):
         '# Whatsapp Dash'
         for i in charts:
             st.plotly_chart(i)
-        word_clouds(df)
+        # word_clouds(df)
 else:
     st.write('Upload file')
 
