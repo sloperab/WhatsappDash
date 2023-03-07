@@ -17,7 +17,7 @@ import plotly.io as pio
 import csv
 import nltk_stopword
 from nltk.corpus import stopwords
-import wordcloud
+# import wordcloud
 import nltk_stopword
 
 # nltk.download('stopwords')
@@ -186,14 +186,17 @@ def word_clouds(processed_chat):
     text = " ".join(Message for Message in processed_chat[processed_chat['Contact'] == i].Message)
     words_contact.append(text)
   for i in range(len(words_contact)):
-    wordcloud = WordCloud(max_font_size=40, max_words=150, background_color="white",stopwords = stop_words_sp).generate(words_contact[i])
+    # wordcloud = WordCloud(max_font_size=40, max_words=150, background_color="white",stopwords = stop_words_sp).generate(words_contact[i])
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     plt.show()
     st.pyplot()
   return clouds
 
-
+'# Whatsapp Dash'
+st.write("All info is in [Github]('https://github.com/sloperab/WhatsappDash')")
+st.write("Tested on 12 hour time format in phone, with Latin date format: day/month/year ")
+st.write("Chats with LOTS of messages may take a while to process")
 uploaded_file = st.file_uploader("Upload Files",type=['.txt'])
 
 if st.button('Process file'):
@@ -205,7 +208,7 @@ if st.button('Process file'):
         file['Date'] = pd.to_datetime(file["Date"], format="%d/%m/%y")  
         df,contacts = chat_processing(file)
         charts = create_graphs(df)
-        '# Whatsapp Dash'
+        
         for i in charts:
             st.plotly_chart(i)
         # word_clouds(df)
