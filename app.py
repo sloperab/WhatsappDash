@@ -187,7 +187,7 @@ def word_clouds(processed_chat):
     words_contact.append(text)
   for i in range(len(words_contact)):
     # wordcloud = WordCloud(max_font_size=40, max_words=150, background_color="white",stopwords = stop_words_sp).generate(words_contact[i])
-    plt.imshow(wordcloud, interpolation='bilinear')
+    # plt.imshow(wordcloud, interpolation='bilinear')s
     plt.axis("off")
     plt.show()
     st.pyplot()
