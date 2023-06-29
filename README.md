@@ -33,6 +33,15 @@ You can test the app here:
 <img src="https://github.com/sloperab/WhatsappDash/blob/main/images/2.png" width="200" height="400" class="center"/>
 <img src="https://github.com/sloperab/WhatsappDash/blob/main/images/3.png" width="200" height="400" class="center"/>
 
+<style>
+    .center{
+        width:200px;
+        height: 400px;
+        object-fit: contain;
+            }
+    
+</style>
+
 ## Requirements
 
 To use this app, you will need to install the following packages:
