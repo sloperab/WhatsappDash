@@ -1,11 +1,5 @@
 
-   .div{
-    display: flex;
-    width: 100vw;
-    justify-content: center;
-   }
-   
-   .center {
+    .center {
         width:200px;
         height: 400px;
         object-fit: contain;

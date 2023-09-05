@@ -29,11 +29,10 @@ You can test the app here:
 6.  Explore the charts and visualizations to gain insights into your WhatsApp chat.
     
 ## How to download chat
-<div class= "div">
 <img src="https://github.com/sloperab/WhatsappDash/blob/main/images/1.png" class="center" />
 <img src="https://github.com/sloperab/WhatsappDash/blob/main/images/2.png" class="center"/>
 <img src="https://github.com/sloperab/WhatsappDash/blob/main/images/3.png" class="center"/>
-</div>
+
 
 ## Requirements
 
