@@ -70,10 +70,10 @@ def chat_processing(chat):
     chat['group_change'] = np.where(chat['Contact'] != chat['prev_group'], True, False)
     # create a new data frame that includes only rows where 'group' changes
     group_changes = chat[chat['group_change']]
-    group_changes['Time_to_respond_mins'] = group_changes.Datetime.diff().astype('timedelta64[m]')
-    group_changes['Time_to_respond_secs'] = group_changes.Datetime.diff().astype('timedelta64[s]')
-    chat = pd.merge(chat, group_changes[['Time_to_respond_secs','Time_to_respond_mins']],left_index=True,right_index=True,how='left')
-    chat.drop(['prev_group','group_change'],axis=1,inplace=True)
+    # group_changes['Time_to_respond_mins'] = group_changes.Datetime.diff().astype('timedelta64[m]')
+    # group_changes['Time_to_respond_secs'] = group_changes.Datetime.diff().astype('timedelta64[s]')
+    # chat = pd.merge(chat, group_changes[['Time_to_respond_secs','Time_to_respond_mins']],left_index=True,right_index=True,how='left')
+    # chat.drop(['prev_group','group_change'],axis=1,inplace=True)
     chat['Emojis'] = chat['Message'].apply(lambda x: emoji.distinct_emoji_list(x))
     chat.drop(chat[chat.Datetime.dt.year > dt.date.today().year].index, inplace = True)
     chat.drop(chat[chat.Datetime.dt.year < dt.datetime(2000, 5, 17).year].index, inplace = True)
@@ -148,12 +148,12 @@ def create_graphs(df):
     emoji_top_5 = emoji_df.groupby('Contact').head(5)
     emoji_graph = px.bar(emoji_top_5,x='Emojis',y='count',color = 'Contact',barmode="group",title='Emoji used in message per contact')
     # Response time per person
-    response_time_filtered = df[(df['Time_to_respond_mins'] < 300) & (df['Time_to_respond_mins'] >= 1)]
-    avg_response_time = response_time_filtered.groupby('Contact').agg(avg_time_mins = ('Time_to_respond_mins','mean'),
-                                                                        median = ('Time_to_respond_mins','median'),
-                                                                        std = ('Time_to_respond_mins','std')).reset_index()
-    avg_time_day = response_time_filtered.groupby(['Contact','Year_month']).agg(avg_resp_time = ('Time_to_respond_mins','mean')).reset_index()
-    fig_avg_response_time = px.line(avg_time_day,x='Year_month',y = 'avg_resp_time',color='Contact',title= 'Mean response time per month (minutes)')
+    # response_time_filtered = df[(df['Time_to_respond_mins'] < 300) & (df['Time_to_respond_mins'] >= 1)]
+    # avg_response_time = response_time_filtered.groupby('Contact').agg(avg_time_mins = ('Time_to_respond_mins','mean'),
+    #                                                                     median = ('Time_to_respond_mins','median'),
+    #                                                                     std = ('Time_to_respond_mins','std')).reset_index()
+    # avg_time_day = response_time_filtered.groupby(['Contact','Year_month']).agg(avg_resp_time = ('Time_to_respond_mins','mean')).reset_index()
+    # fig_avg_response_time = px.line(avg_time_day,x='Year_month',y = 'avg_resp_time',color='Contact',title= 'Mean response time per month (minutes)')
     # med_time_day = response_time_filtered.groupby(['Contact','Year_month']).agg(avg_resp_time = ('Time_to_respond_mins','median')).reset_index()
     # fig_med_response_time = px.line(med_time_day,x='Year_month',y = 'avg_resp_time',color='Contact',title= 'Median response time per month (minutes)')
     # Calculating peak hours adjusting timezone diff
@@ -176,7 +176,9 @@ def create_graphs(df):
     # Max words per contact
     max_words = df.groupby('Contact').agg(max_words = ('Words','max')).reset_index()
     return [fig_pie,fig_msg_over_time,fig_media,fig_message_month,fig_boxplot,fig_boxplot_contact,
-            fig_streak,emoji_graph,fig_avg_response_time,fig_peak_hour,
+            fig_streak,emoji_graph,
+            # fig_avg_response_time,
+            fig_peak_hour,
             fig_msg_length_cat]
 
 def word_clouds(processed_chat):
