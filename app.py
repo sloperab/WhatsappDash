@@ -7,21 +7,21 @@ import datetime as dt
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
-import calendar
-import time
+# import calendar
+# import time
 import plotly.graph_objects as go
 # from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
-from collections import Counter
+# from collections import Counter
 import streamlit as st
 import plotly.io as pio
-import csv
-import nltk_stopword
-from nltk.corpus import stopwords
+# import csv
+# import nltk_stopword
+# from nltk.corpus import stopwords
 # import wordcloud
-import nltk_stopword
+# import nltk_stopword
 
 # nltk.download('stopwords')
-stop_words_sp = set(stopwords.words('spanish'))
+# stop_words_sp = set(stopwords.words('spanish'))
 pio.templates.default = 'plotly'
 def extract_chat_info(chat):
     chat_info = []
@@ -202,10 +202,9 @@ uploaded_file = st.file_uploader("Upload Files",type=['.txt'])
 if st.button('Process file'):
     if uploaded_file:
         data = uploaded_file.getvalue().decode('utf-8').splitlines()
-        print(data)
-        print(type(data))
         file = extract_chat_info(data)
-        file['Date'] = pd.to_datetime(file["Date"], format="%d/%m/%y")  
+        # file['Date'] = pd.to_datetime(file["Date"], format="%d/%m/%y")
+        st.write(file)  
         df,contacts = chat_processing(file)
         charts = create_graphs(df)
         
