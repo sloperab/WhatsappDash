@@ -1,17 +1,12 @@
 import pandas as pd
 import emoji
-import time as T
 import re, os
 import numpy as np
 import datetime as dt
-import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
-# import calendar
-# import time
 import plotly.graph_objects as go
 # from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
-# from collections import Counter
 import streamlit as st
 import plotly.io as pio
 # import csv
@@ -203,8 +198,7 @@ if st.button('Process file'):
     if uploaded_file:
         data = uploaded_file.getvalue().decode('utf-8').splitlines()
         file = extract_chat_info(data)
-        # file['Date'] = pd.to_datetime(file["Date"], format="%d/%m/%y")
-        st.write(file)  
+        file['Date'] = pd.to_datetime(file["Date"], format="%d/%m/%y")
         df,contacts = chat_processing(file)
         charts = create_graphs(df)
         
